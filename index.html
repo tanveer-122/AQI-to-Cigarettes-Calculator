@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AQI to Cigarettes Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 0;
+            text-align: center;
+        }
+        .calculator {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #670ff5;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(12, 12, 12, 0.897).1;
+        }
+        .calculator input, .calculator button {
+            margin: 10px 0;
+            padding: 10px;
+            width: 90%;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .calculator button {
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+        }
+        .calculator button:hover {
+            background-color: #45a049;
+        }
+        .result {
+            font-size: 18px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <h2>AQI to Cigarettes Calculator</h2>
+        <p>Enter the AQI value to calculate the equivalent cigarettes smoked per day:</p>
+        <input type="number" id="aqiInput" placeholder="Enter AQI value" min="0">
+        <button onclick="calculateCigarettes()">Calculate</button>
+        <div class="result" id="result"></div>
+    </div>
+
+    <script>
+        function calculateCigarettes() {
+            const aqi = parseFloat(document.getElementById('aqiInput').value);
+            const resultDiv = document.getElementById('result');
+
+            if (isNaN(aqi) || aqi < 0) {
+                resultDiv.textContent = "Please enter a valid AQI value.";
+                return;
+            }
+
+            // Rough estimate: 22 AQI ≈ 1 cigarette per day
+            const cigarettes = (aqi / 22).toFixed(2);
+
+            resultDiv.textContent = `An AQI of ${aqi} is approximately equivalent to smoking ${cigarettes} cigarettes per day.`;
+        }
+    </script>
+</body>
+</html>
